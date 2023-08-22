@@ -92,7 +92,7 @@
                             </connections>
                         </searchBar>
                     </subviews>
-                    <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.92156862745098034" green="0.94901960784313721" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="6CF-pi-ra8" firstAttribute="top" secondItem="aS5-0e-jQn" secondAttribute="bottom" id="0Ht-V2-bUY"/>
                         <constraint firstItem="p5n-Mx-8eU" firstAttribute="leading" secondItem="9iP-95-xMU" secondAttribute="leading" constant="5" id="7la-yB-2li"/>
