@@ -29,6 +29,8 @@
 		922B816C2A952E7400E4B59D /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B816B2A952E7400E4B59D /* UIHelper.swift */; };
 		924A617E2A95389100ABE3E9 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924A617C2A95389100ABE3E9 /* SplashScreenViewController.swift */; };
 		924A617F2A95389100ABE3E9 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 924A617D2A95389100ABE3E9 /* SplashScreenViewController.xib */; };
+		924A61852A953BB200ABE3E9 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924A61832A953BB200ABE3E9 /* AddProductViewController.swift */; };
+		924A61862A953BB200ABE3E9 /* AddProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 924A61842A953BB200ABE3E9 /* AddProductViewController.xib */; };
 		A2DC09D7A7EE8C1F2CA04BFC /* Pods_SwiperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E13E503733EC9BDA3F90D0D /* Pods_SwiperTests.framework */; };
 		C9F58696079B1CDE22DE1FAB /* Pods_Swiper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FED180E230832ACF843E0E1 /* Pods_Swiper.framework */; };
 		DAA745366DA5E1EB77B33458 /* Pods_Swiper_SwiperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FBE0897CC9CE74E454EE0 /* Pods_Swiper_SwiperUITests.framework */; };
@@ -83,6 +85,8 @@
 		922B816B2A952E7400E4B59D /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		924A617C2A95389100ABE3E9 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		924A617D2A95389100ABE3E9 /* SplashScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
+		924A61832A953BB200ABE3E9 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
+		924A61842A953BB200ABE3E9 /* AddProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddProductViewController.xib; sourceTree = "<group>"; };
 		9A6E5D66606267B9D6B8DAFF /* Pods-Swiper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swiper.release.xcconfig"; path = "Target Support Files/Pods-Swiper/Pods-Swiper.release.xcconfig"; sourceTree = "<group>"; };
 		C84CC8570120633C4B6A2162 /* Pods-SwiperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiperTests.release.xcconfig"; path = "Target Support Files/Pods-SwiperTests/Pods-SwiperTests.release.xcconfig"; sourceTree = "<group>"; };
 		D9AFDB5C486D18FEDF0EC1A1 /* Pods-SwiperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiperTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiperTests/Pods-SwiperTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 		922B81132A94D1E400E4B59D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				924A61802A953B7400ABE3E9 /* AddProductModule */,
 				924A617B2A95386E00ABE3E9 /* SplashScreenModule */,
 				922B81142A94D1ED00E4B59D /* HomeModule */,
 			);
@@ -264,10 +269,35 @@
 		924A617B2A95386E00ABE3E9 /* SplashScreenModule */ = {
 			isa = PBXGroup;
 			children = (
+				924A61822A953B8E00ABE3E9 /* View */,
+			);
+			path = SplashScreenModule;
+			sourceTree = "<group>";
+		};
+		924A61802A953B7400ABE3E9 /* AddProductModule */ = {
+			isa = PBXGroup;
+			children = (
+				924A61812A953B8600ABE3E9 /* View */,
+			);
+			path = AddProductModule;
+			sourceTree = "<group>";
+		};
+		924A61812A953B8600ABE3E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				924A61832A953BB200ABE3E9 /* AddProductViewController.swift */,
+				924A61842A953BB200ABE3E9 /* AddProductViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		924A61822A953B8E00ABE3E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				924A617C2A95389100ABE3E9 /* SplashScreenViewController.swift */,
 				924A617D2A95389100ABE3E9 /* SplashScreenViewController.xib */,
 			);
-			path = SplashScreenModule;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +415,7 @@
 				924A617F2A95389100ABE3E9 /* SplashScreenViewController.xib in Resources */,
 				922B81292A94F15300E4B59D /* HomeProductCollectionViewCell.xib in Resources */,
 				922B811B2A94D52B00E4B59D /* HomeViewController.xib in Resources */,
+				924A61862A953BB200ABE3E9 /* AddProductViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +551,7 @@
 				922B811F2A94D63A00E4B59D /* HomeViewModel.swift in Sources */,
 				922B812B2A94FDCA00E4B59D /* Extension.swift in Sources */,
 				922B80EB2A94D1D600E4B59D /* Swiper.xcdatamodeld in Sources */,
+				924A61852A953BB200ABE3E9 /* AddProductViewController.swift in Sources */,
 				922B81222A94D84E00E4B59D /* NetworkManager.swift in Sources */,
 				922B811D2A94D60900E4B59D /* ProductListModel.swift in Sources */,
 				922B80E12A94D1D600E4B59D /* AppDelegate.swift in Sources */,
