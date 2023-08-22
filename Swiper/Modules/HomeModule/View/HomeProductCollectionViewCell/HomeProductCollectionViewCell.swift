@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeProductCollectionViewCell: UICollectionViewCell {
 
@@ -35,5 +36,27 @@ class HomeProductCollectionViewCell: UICollectionViewCell {
         productImageView.clipsToBounds = true
         productImageView.layer.cornerRadius = 10
         internalView.applyLiftedShadowEffectToView(cornerRadius: 10)
+    }
+    
+    private func roundToTwoDecimals(number: Double) -> Double {
+        return (number * 100).rounded() / 100
+    }
+    
+    private func getTotalPrice(price:Double,tax:Double)->Double{
+        let total = price+tax
+        return roundToTwoDecimals(number: total)
+    }
+    
+    func setupCell(product:ProductListElementModel){
+        let price = roundToTwoDecimals(number: product.price)
+        let totalPrice = getTotalPrice(price: product.price, tax: product.tax)
+        
+        productNameLabel.text = product.productName
+        productTypeLabel.text = product.productType
+        priceLabel.text = "₹\(price)"
+        taxLabel.text = "₹ \(product.tax)"
+        totalPriceLabel.text = "₹ \(totalPrice)"
+        
+        productImageView.sd_setImage(with: URL(string: product.image), placeholderImage: UIImage(named: ImageConstants.noImage.image), context: nil)
     }
 }

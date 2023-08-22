@@ -28,3 +28,19 @@ enum CollectionViewCells:String{
         return self.rawValue
     }
 }
+
+enum ImageConstants:String{
+    case noImage = "noImage"
+    
+    var image:String{
+        return self.rawValue
+    }
+}
+
+enum StringConstants:String{
+    case productsFound = "Products found"
+    
+    var constant:String {
+        return self.rawValue
+    }
+}

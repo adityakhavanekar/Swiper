@@ -10,6 +10,7 @@ import SDWebImage
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var totalProductsCountLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var productListCollectionView: UICollectionView!
     
@@ -23,6 +24,7 @@ class HomeViewController: UIViewController {
     
     private func setupUI(){
         navigationController?.navigationBar.isHidden = true
+        searchBar.searchTextField.textColor = .black
         setupCollectionView()
     }
     
@@ -40,6 +42,7 @@ class HomeViewController: UIViewController {
             if err == nil {
                 DispatchQueue.main.async {
                     self.productListCollectionView.reloadData()
+                    self.totalProductsCountLabel.text = "\(self.homeViewModel.getCount()) \(StringConstants.productsFound.constant)"
                 }
             }
         }
@@ -53,11 +56,9 @@ extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.homeProductCollectionViewCell.cell, for: indexPath) as? HomeProductCollectionViewCell else {return UICollectionViewCell()}
-        let product = homeViewModel.getProduct(index: indexPath.row)
-        if let imgUrl = product?.image{
-            cell.productImageView.sd_setImage(with: URL(string: imgUrl))
+        if let product = homeViewModel.getProduct(index: indexPath.row){
+            cell.setupCell(product: product)
         }
-        cell.productNameLabel.text = product?.productName
         return cell
     }
 }
