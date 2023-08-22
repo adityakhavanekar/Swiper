@@ -11,11 +11,6 @@ class ViewController: UIViewController {
     var homeViewModel:HomeViewModel = HomeViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeViewModel.getProductListing(completion: { err in
-            if err == nil{
-                
-            }
-        })
     }
 }
 

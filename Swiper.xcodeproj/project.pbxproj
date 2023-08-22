@@ -203,8 +203,8 @@
 		922B81132A94D1E400E4B59D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				924A61802A953B7400ABE3E9 /* AddProductModule */,
 				924A617B2A95386E00ABE3E9 /* SplashScreenModule */,
+				924A61802A953B7400ABE3E9 /* AddProductModule */,
 				922B81142A94D1ED00E4B59D /* HomeModule */,
 			);
 			path = Modules;
@@ -277,6 +277,8 @@
 		924A61802A953B7400ABE3E9 /* AddProductModule */ = {
 			isa = PBXGroup;
 			children = (
+				924A61882A953BED00ABE3E9 /* Model */,
+				924A61872A953BE100ABE3E9 /* ViewModel */,
 				924A61812A953B8600ABE3E9 /* View */,
 			);
 			path = AddProductModule;
@@ -298,6 +300,20 @@
 				924A617D2A95389100ABE3E9 /* SplashScreenViewController.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		924A61872A953BE100ABE3E9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		924A61882A953BED00ABE3E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

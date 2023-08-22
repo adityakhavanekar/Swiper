@@ -69,6 +69,11 @@ extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = AddProductViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension HomeViewController:UICollectionViewDelegateFlowLayout{
