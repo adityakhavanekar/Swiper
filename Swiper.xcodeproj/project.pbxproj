@@ -267,7 +267,7 @@
 				922B80D92A94D1D600E4B59D /* Sources */,
 				922B80DA2A94D1D600E4B59D /* Frameworks */,
 				922B80DB2A94D1D600E4B59D /* Resources */,
-				279AC1AA17F1ADB2EF54A29C /* [CP] Embed Pods Frameworks */,
+				3C3697FEB132B67883F5C0EE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -305,7 +305,7 @@
 				922B80FC2A94D1D700E4B59D /* Sources */,
 				922B80FD2A94D1D700E4B59D /* Frameworks */,
 				922B80FE2A94D1D700E4B59D /* Resources */,
-				72D6D941C0EAC16045FFC08B /* [CP] Embed Pods Frameworks */,
+				A78805F4692E6B6F12876CC1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -390,7 +390,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		279AC1AA17F1ADB2EF54A29C /* [CP] Embed Pods Frameworks */ = {
+		3C3697FEB132B67883F5C0EE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -405,23 +405,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swiper/Pods-Swiper-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		72D6D941C0EAC16045FFC08B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swiper-SwiperUITests/Pods-Swiper-SwiperUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swiper-SwiperUITests/Pods-Swiper-SwiperUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swiper-SwiperUITests/Pods-Swiper-SwiperUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		852E3C63CC7A5EDD8E8CF2EC /* [CP] Check Pods Manifest.lock */ = {
@@ -488,6 +471,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A78805F4692E6B6F12876CC1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Swiper-SwiperUITests/Pods-Swiper-SwiperUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Swiper-SwiperUITests/Pods-Swiper-SwiperUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swiper-SwiperUITests/Pods-Swiper-SwiperUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
