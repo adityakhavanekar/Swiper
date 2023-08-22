@@ -8,11 +8,14 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    var homeViewModel:HomeViewModel = HomeViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    private func getData(){
         
     }
-
 }

@@ -8,12 +8,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var homeViewModel:HomeViewModel = HomeViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        homeViewModel.getProductListing(completion: { err in
+            if err == nil{
+                
+            }
+        })
     }
-
-
 }
 
