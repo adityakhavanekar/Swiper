@@ -19,3 +19,12 @@ enum APIEndpoints: String {
         return url.appendingPathComponent(self.rawValue)
     }
 }
+
+enum CollectionViewCells:String{
+    
+    case homeProductCollectionViewCell = "HomeProductCollectionViewCell"
+    
+    var cell: String {
+        return self.rawValue
+    }
+}
