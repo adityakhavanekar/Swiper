@@ -39,6 +39,7 @@ enum ImageConstants:String{
 
 enum StringConstants:String{
     case productsFound = "Products found"
+    case rupeeSymbol = "₹"
     
     var constant:String {
         return self.rawValue

@@ -53,10 +53,10 @@ class HomeProductCollectionViewCell: UICollectionViewCell {
         
         productNameLabel.text = product.productName
         productTypeLabel.text = product.productType
-        priceLabel.text = "₹\(price)"
-        taxLabel.text = "₹ \(product.tax)"
-        totalPriceLabel.text = "₹ \(totalPrice)"
+        priceLabel.text = "\(StringConstants.rupeeSymbol.constant) \(price)"
+        taxLabel.text = "\(StringConstants.rupeeSymbol.constant) \(product.tax)"
+        totalPriceLabel.text = "\(StringConstants.rupeeSymbol.constant) \(totalPrice)"
         
-        productImageView.sd_setImage(with: URL(string: product.image), placeholderImage: UIImage(named: ImageConstants.noImage.image), context: nil)
+        productImageView.sd_setImage(with: URL(string: product.image),placeholderImage: UIImage(named: ImageConstants.noImage.image),context: nil)
     }
 }

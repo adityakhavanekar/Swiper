@@ -26,6 +26,7 @@
 		922B81282A94F15300E4B59D /* HomeProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B81262A94F15300E4B59D /* HomeProductCollectionViewCell.swift */; };
 		922B81292A94F15300E4B59D /* HomeProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922B81272A94F15300E4B59D /* HomeProductCollectionViewCell.xib */; };
 		922B812B2A94FDCA00E4B59D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B812A2A94FDCA00E4B59D /* Extension.swift */; };
+		922B816C2A952E7400E4B59D /* UIFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B816B2A952E7400E4B59D /* UIFunctions.swift */; };
 		A2DC09D7A7EE8C1F2CA04BFC /* Pods_SwiperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E13E503733EC9BDA3F90D0D /* Pods_SwiperTests.framework */; };
 		C9F58696079B1CDE22DE1FAB /* Pods_Swiper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FED180E230832ACF843E0E1 /* Pods_Swiper.framework */; };
 		DAA745366DA5E1EB77B33458 /* Pods_Swiper_SwiperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016FBE0897CC9CE74E454EE0 /* Pods_Swiper_SwiperUITests.framework */; };
@@ -77,6 +78,7 @@
 		922B81262A94F15300E4B59D /* HomeProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		922B81272A94F15300E4B59D /* HomeProductCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProductCollectionViewCell.xib; sourceTree = "<group>"; };
 		922B812A2A94FDCA00E4B59D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		922B816B2A952E7400E4B59D /* UIFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFunctions.swift; sourceTree = "<group>"; };
 		9A6E5D66606267B9D6B8DAFF /* Pods-Swiper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swiper.release.xcconfig"; path = "Target Support Files/Pods-Swiper/Pods-Swiper.release.xcconfig"; sourceTree = "<group>"; };
 		C84CC8570120633C4B6A2162 /* Pods-SwiperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiperTests.release.xcconfig"; path = "Target Support Files/Pods-SwiperTests/Pods-SwiperTests.release.xcconfig"; sourceTree = "<group>"; };
 		D9AFDB5C486D18FEDF0EC1A1 /* Pods-SwiperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiperTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiperTests/Pods-SwiperTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,7 +123,6 @@
 				D9AFDB5C486D18FEDF0EC1A1 /* Pods-SwiperTests.debug.xcconfig */,
 				C84CC8570120633C4B6A2162 /* Pods-SwiperTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -241,6 +242,7 @@
 				922B81212A94D84E00E4B59D /* NetworkManager.swift */,
 				922B81232A94E04700E4B59D /* Constants.swift */,
 				922B812A2A94FDCA00E4B59D /* Extension.swift */,
+				922B816B2A952E7400E4B59D /* UIFunctions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -498,6 +500,7 @@
 				922B811A2A94D52B00E4B59D /* HomeViewController.swift in Sources */,
 				922B81282A94F15300E4B59D /* HomeProductCollectionViewCell.swift in Sources */,
 				922B80E52A94D1D600E4B59D /* ViewController.swift in Sources */,
+				922B816C2A952E7400E4B59D /* UIFunctions.swift in Sources */,
 				922B811F2A94D63A00E4B59D /* HomeViewModel.swift in Sources */,
 				922B812B2A94FDCA00E4B59D /* Extension.swift in Sources */,
 				922B80EB2A94D1D600E4B59D /* Swiper.xcdatamodeld in Sources */,
