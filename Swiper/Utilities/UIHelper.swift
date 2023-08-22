@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class UIFunctions{
+class UIHelper{
     
     func showActivityIndicator(in view: UIView) -> UIActivityIndicatorView {
         let activityIndicator = UIActivityIndicatorView(style: .large)

@@ -15,8 +15,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var productListCollectionView: UICollectionView!
     
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
-    var uiFunctions = UIFunctions()
     
+    var uiHelper:UIHelper = UIHelper()
     var homeViewModel:HomeViewModel = HomeViewModel()
 
     override func viewDidLoad() {
@@ -42,19 +42,17 @@ class HomeViewController: UIViewController {
     }
     
     private func callHomeApi(){
-        activityIndicator = uiFunctions.showActivityIndicator(in: self.view)
-        DispatchQueue.main.asyncAfter(deadline: .now()+3){
-            self.homeViewModel.getProductListing { err in
-                if err == nil {
-                    DispatchQueue.main.async {
-                        self.productListCollectionView.reloadData()
-                        self.totalProductsCountLabel.text = "\(self.homeViewModel.getCount()) \(StringConstants.productsFound.constant)"
-                        self.uiFunctions.hideActivityIndicator(self.activityIndicator)
-                    }
-                }else{
-                    print("Error Occured")
-                    self.uiFunctions.hideActivityIndicator(self.activityIndicator)
+        activityIndicator = uiHelper.showActivityIndicator(in: self.view)
+        self.homeViewModel.getProductListing { err in
+            if err == nil {
+                DispatchQueue.main.async {
+                    self.productListCollectionView.reloadData()
+                    self.totalProductsCountLabel.text = "\(self.homeViewModel.getCount()) \(StringConstants.productsFound.constant)"
+                    self.uiHelper.hideActivityIndicator(self.activityIndicator)
                 }
+            }else{
+                print("Error Occured")
+                self.uiHelper.hideActivityIndicator(self.activityIndicator)
             }
         }
     }
