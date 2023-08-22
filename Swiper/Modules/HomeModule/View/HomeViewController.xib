@@ -25,17 +25,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iP-95-xMU" userLabel="MainView">
                     <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <subviews>
-                        <searchBar contentMode="redraw" barStyle="black" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="6CF-pi-ra8">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="mno-pd-4i7"/>
-                            </connections>
-                        </searchBar>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="p5n-Mx-8eU">
-                            <rect key="frame" x="5" y="96" width="383" height="697"/>
+                            <rect key="frame" x="5" y="146" width="383" height="647"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sT6-m6-Zo7">
                                 <size key="itemSize" width="128" height="128"/>
@@ -45,10 +36,10 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZg-aV-wsl" userLabel="ProductCountView">
-                            <rect key="frame" x="0.0" y="56" width="393" height="40"/>
+                            <rect key="frame" x="0.0" y="106" width="393" height="40"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8q-T1-NeN">
-                                    <rect key="frame" x="20" y="9.6666666666666714" width="353" height="21"/>
+                                    <rect key="frame" x="20" y="9.6666666666666572" width="353" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -74,20 +65,51 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aS5-0e-jQn">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe Mart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXf-Wm-6ql">
+                                    <rect key="frame" x="130.66666666666666" y="10" width="131.99999999999997" height="30"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.23921568627450979" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="QXf-Wm-6ql" firstAttribute="centerY" secondItem="aS5-0e-jQn" secondAttribute="centerY" id="8Pm-8B-r2g"/>
+                                <constraint firstAttribute="height" constant="50" id="LGC-3T-uui"/>
+                                <constraint firstItem="QXf-Wm-6ql" firstAttribute="centerX" secondItem="aS5-0e-jQn" secondAttribute="centerX" id="Uhb-2h-3sd"/>
+                            </constraints>
+                        </view>
+                        <searchBar contentMode="redraw" barStyle="black" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="6CF-pi-ra8">
+                            <rect key="frame" x="0.0" y="50" width="393" height="56"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="mno-pd-4i7"/>
+                            </connections>
+                        </searchBar>
                     </subviews>
                     <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="6CF-pi-ra8" firstAttribute="top" secondItem="aS5-0e-jQn" secondAttribute="bottom" id="0Ht-V2-bUY"/>
                         <constraint firstItem="p5n-Mx-8eU" firstAttribute="leading" secondItem="9iP-95-xMU" secondAttribute="leading" constant="5" id="7la-yB-2li"/>
                         <constraint firstItem="p5n-Mx-8eU" firstAttribute="top" secondItem="bZg-aV-wsl" secondAttribute="bottom" id="AGb-b2-oqx"/>
-                        <constraint firstItem="bZg-aV-wsl" firstAttribute="top" secondItem="6CF-pi-ra8" secondAttribute="bottom" id="BDI-ui-MXf"/>
                         <constraint firstAttribute="bottom" secondItem="Jph-jd-Hkk" secondAttribute="bottom" constant="40" id="Bua-eE-HjU"/>
-                        <constraint firstItem="6CF-pi-ra8" firstAttribute="top" secondItem="9iP-95-xMU" secondAttribute="top" id="HQM-CM-EuU"/>
+                        <constraint firstItem="6CF-pi-ra8" firstAttribute="leading" secondItem="9iP-95-xMU" secondAttribute="leading" id="CAE-zB-dAp"/>
+                        <constraint firstAttribute="trailing" secondItem="aS5-0e-jQn" secondAttribute="trailing" id="Igk-V2-TYI"/>
                         <constraint firstItem="bZg-aV-wsl" firstAttribute="leading" secondItem="9iP-95-xMU" secondAttribute="leading" id="Lmv-Cp-QGb"/>
-                        <constraint firstAttribute="trailing" secondItem="6CF-pi-ra8" secondAttribute="trailing" id="ULG-Dw-6mh"/>
+                        <constraint firstAttribute="trailing" secondItem="bZg-aV-wsl" secondAttribute="trailing" id="Tlu-o9-Hfl"/>
+                        <constraint firstAttribute="trailing" secondItem="6CF-pi-ra8" secondAttribute="trailing" id="Ujd-cV-09n"/>
+                        <constraint firstItem="bZg-aV-wsl" firstAttribute="top" secondItem="6CF-pi-ra8" secondAttribute="bottom" id="Wn0-Ql-wjR"/>
                         <constraint firstAttribute="trailing" secondItem="bZg-aV-wsl" secondAttribute="trailing" id="WnK-El-iTI"/>
                         <constraint firstAttribute="trailing" secondItem="p5n-Mx-8eU" secondAttribute="trailing" constant="5" id="az8-Ky-nqz"/>
                         <constraint firstAttribute="bottom" secondItem="p5n-Mx-8eU" secondAttribute="bottom" id="cvU-tS-OtL"/>
-                        <constraint firstItem="6CF-pi-ra8" firstAttribute="leading" secondItem="9iP-95-xMU" secondAttribute="leading" id="f9L-Rh-QzM"/>
+                        <constraint firstItem="aS5-0e-jQn" firstAttribute="top" secondItem="9iP-95-xMU" secondAttribute="top" id="eRj-oi-SBK"/>
+                        <constraint firstItem="aS5-0e-jQn" firstAttribute="leading" secondItem="9iP-95-xMU" secondAttribute="leading" id="fcj-Qx-TKU"/>
+                        <constraint firstItem="bZg-aV-wsl" firstAttribute="leading" secondItem="9iP-95-xMU" secondAttribute="leading" id="lb7-4B-OVG"/>
                         <constraint firstAttribute="trailing" secondItem="Jph-jd-Hkk" secondAttribute="trailing" constant="40" id="uOh-AS-BDo"/>
                         <constraint firstItem="Jph-jd-Hkk" firstAttribute="leading" secondItem="9iP-95-xMU" secondAttribute="leading" constant="40" id="wWz-Gr-lRX"/>
                     </constraints>

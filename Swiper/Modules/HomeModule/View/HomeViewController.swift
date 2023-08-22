@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupCollectionView()
         callHomeApi()
     }
     
@@ -30,14 +31,12 @@ class HomeViewController: UIViewController {
         searchBar.searchTextField.textColor = .black
         adProductButton.layer.cornerRadius = 10
         adProductButton.applyLiftedShadowEffectToView(cornerRadius: 10)
-        setupCollectionView()
     }
     
     private func setupCollectionView(){
         productListCollectionView.dataSource = self
         productListCollectionView.delegate = self
-        productListCollectionView.register(
-            UINib(nibName: CollectionViewCells.homeProductCollectionViewCell.cell,bundle: nil),forCellWithReuseIdentifier: CollectionViewCells.homeProductCollectionViewCell.cell)
+        productListCollectionView.register(UINib(nibName: CollectionViewCells.homeProductCollectionViewCell.cell,bundle: nil),forCellWithReuseIdentifier: CollectionViewCells.homeProductCollectionViewCell.cell)
         productListCollectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 100, right: 0)
     }
     
