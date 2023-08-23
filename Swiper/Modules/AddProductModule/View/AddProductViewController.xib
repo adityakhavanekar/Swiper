@@ -14,6 +14,7 @@
                 <outlet property="cancelButton" destination="BJm-Xc-xXi" id="vXb-Mp-iXx"/>
                 <outlet property="internalView" destination="7Jk-pQ-0F6" id="N1O-rQ-qwW"/>
                 <outlet property="priceTxtField" destination="2v2-uN-853" id="lqx-ec-dsH"/>
+                <outlet property="productImageView" destination="Tdl-ZX-XNd" id="qCQ-Ja-jac"/>
                 <outlet property="productNameTxtField" destination="6DP-5g-6lS" id="tei-gc-G5T"/>
                 <outlet property="productTypeTxtField" destination="TOZ-Dj-Zbc" id="D2L-mW-hE2"/>
                 <outlet property="scrollView" destination="ldo-Cc-oL3" id="VBk-oz-qNH"/>
