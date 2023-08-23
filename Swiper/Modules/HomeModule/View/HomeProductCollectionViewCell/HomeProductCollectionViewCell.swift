@@ -35,7 +35,7 @@ class HomeProductCollectionViewCell: UICollectionViewCell {
     private func setupUI(){
         productImageView.clipsToBounds = true
         productImageView.layer.cornerRadius = 10
-        internalView.applyLiftedShadowEffectToView(cornerRadius: 10)
+        internalView.applyLiftedShadowEffectToView(cornerRadius: 10,opacity: 0.3)
     }
     
     private func roundToTwoDecimals(number: Double) -> Double {

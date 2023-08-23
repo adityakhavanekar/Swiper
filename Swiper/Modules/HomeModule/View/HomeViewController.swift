@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         searchBar.searchTextField.textColor = .black
         adProductButton.layer.cornerRadius = 10
-        adProductButton.applyLiftedShadowEffectToView(cornerRadius: 10)
+        adProductButton.applyLiftedShadowEffectToView(cornerRadius: 10, opacity: 0.3)
     }
     
     private func setupCollectionView(){

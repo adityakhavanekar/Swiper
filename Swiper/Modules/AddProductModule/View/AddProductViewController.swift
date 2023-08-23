@@ -37,9 +37,9 @@ class AddProductViewController: UIViewController {
         cancelButton.layer.cornerRadius = 5
         internalView.layer.cornerRadius = 10
         
-        internalView.applyLiftedShadowEffectToView(cornerRadius: 5)
-        cancelButton.applyLiftedShadowEffectToView(cornerRadius: 5)
-        addButton.applyLiftedShadowEffectToView(cornerRadius: 10)
+        internalView.applyLiftedShadowEffectToView(cornerRadius: 10,opacity: 0.3)
+        cancelButton.applyLiftedShadowEffectToView(cornerRadius: 5,opacity: 0.1)
+        addButton.applyLiftedShadowEffectToView(cornerRadius: 5,opacity: 0.1)
         
         setTextFieldDelegates(textFields: [productNameTxtField,productTypeTxtField,priceTxtField,taxTxtField])
         addScrollingObeservers()
