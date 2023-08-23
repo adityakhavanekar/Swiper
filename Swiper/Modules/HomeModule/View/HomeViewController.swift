@@ -55,8 +55,15 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func addProductButtonClicked(_ sender: UIButton) {
+        let vc = AddProductViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
+// MARK: - CollectionView Methods
 extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return homeViewModel.getFilteredProductsCount() ?? homeViewModel.getCount()
@@ -72,11 +79,6 @@ extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         }
         
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = AddProductViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -96,6 +98,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
     }
 }
 
+//MARK: - Search Functionality
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {

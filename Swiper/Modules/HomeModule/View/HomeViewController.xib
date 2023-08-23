@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -64,6 +63,9 @@
                             <state key="normal" title="Add Product">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="addProductButtonClicked:" destination="-1" eventType="touchUpInside" id="t95-aL-0kE"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aS5-0e-jQn">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
@@ -116,7 +118,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.92156862750000001" green="0.94901960780000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="9iP-95-xMU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4tc-io-FQH"/>
                 <constraint firstItem="9iP-95-xMU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8gW-7a-GAu"/>
@@ -126,9 +128,4 @@
             <point key="canvasLocation" x="49.618320610687022" y="19.718309859154932"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
