@@ -24,11 +24,11 @@ class AddProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         internalView.layer.cornerRadius = 10
-        internalView.applyLiftedShadowEffectToView(cornerRadius: 10)
-        cancelButton.layer.cornerRadius = 10
+        internalView.applyLiftedShadowEffectToView(cornerRadius: 5)
+        cancelButton.layer.cornerRadius = 5
         cancelButton.clipsToBounds = true
-        cancelButton.applyLiftedShadowEffectToView(cornerRadius: 10)
-        addButton.layer.cornerRadius = 10
+        cancelButton.applyLiftedShadowEffectToView(cornerRadius: 5)
+        addButton.layer.cornerRadius = 5
         addButton.clipsToBounds = true
         addButton.applyLiftedShadowEffectToView(cornerRadius: 10)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -43,7 +43,7 @@ class AddProductViewController: UIViewController {
     @objc func keyboardAppear(){
         print(scrollView.contentSize.height)
         if isExpand == false{
-            scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.internalView.frame.height + 250)
+            scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.internalView.frame.height + 300)
             isExpand = true
         }
     }
