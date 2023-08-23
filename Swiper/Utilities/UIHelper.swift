@@ -31,4 +31,19 @@ class UIHelper{
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
     }
+    
+    func createActionSheet(title:String,actions:[UIAlertAction])->UIAlertController{
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        for action in actions {
+            alert.addAction(action)
+        }
+        return alert
+    }
+    
+    func createAlertActions(title:String, style:UIAlertAction.Style, completion: @escaping ()->()) -> UIAlertAction{
+        let action = UIAlertAction(title: title, style: style){_ in
+            completion()
+        }
+        return action
+    }
 }

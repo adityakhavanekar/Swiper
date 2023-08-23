@@ -9,6 +9,7 @@ import UIKit
 
 class AddProductViewController: UIViewController {
 
+    @IBOutlet weak var pickImageButton: UIButton!
     @IBOutlet weak var taxTxtField: UITextField!
     @IBOutlet weak var priceTxtField: UITextField!
     @IBOutlet weak var productTypeTxtField: UITextField!
@@ -21,6 +22,9 @@ class AddProductViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    var uiHelper:UIHelper = UIHelper()
+    
     var isExpand:Bool = false
     
     override func viewDidLoad() {
@@ -32,10 +36,13 @@ class AddProductViewController: UIViewController {
         internalView.clipsToBounds = true
         cancelButton.clipsToBounds = true
         addButton.clipsToBounds = true
+        productImageView.clipsToBounds = true
         
         addButton.layer.cornerRadius = 5
         cancelButton.layer.cornerRadius = 5
+        productImageView.layer.cornerRadius = 10
         internalView.layer.cornerRadius = 10
+        pickImageButton.layer.cornerRadius = 10
         
         internalView.applyLiftedShadowEffectToView(cornerRadius: 10,opacity: 0.3)
         cancelButton.applyLiftedShadowEffectToView(cornerRadius: 5,opacity: 0.1)
@@ -70,6 +77,34 @@ class AddProductViewController: UIViewController {
         }
     }
     
+    private func openImagePicker(sourceType: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        present(imagePicker, animated: true){
+            self.uiHelper.hideActivityIndicator(self.activityIndicator)
+        }
+    }
+    
+    private func showImageSourceAlert() {
+        self.activityIndicator = self.uiHelper.showActivityIndicator(in: self.view)
+        let libAction = uiHelper.createAlertActions(title: "Photo Library", style: .default) {
+            self.openImagePicker(sourceType: .photoLibrary)
+        }
+        let camAction = uiHelper.createAlertActions(title: "Camera", style: .default) {
+            self.openImagePicker(sourceType: .camera)
+        }
+        let canAction = uiHelper.createAlertActions(title: "Cancel", style: .cancel) {
+            self.uiHelper.hideActivityIndicator(self.activityIndicator)
+        }
+        let alert = uiHelper.createActionSheet(title: "Choose image source", actions: [libAction,camAction,canAction])
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func pickImageButtonClicked(_ sender: UIButton) {
+        showImageSourceAlert()
+    }
+    
     @IBAction func cancelButtonClicked(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -80,4 +115,8 @@ extension AddProductViewController: UITextFieldDelegate {
    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
       textField.resignFirstResponder()
    }
+}
+
+extension AddProductViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    
 }
