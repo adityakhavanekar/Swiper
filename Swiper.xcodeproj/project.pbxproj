@@ -223,7 +223,7 @@
 		922B81152A94D1FF00E4B59D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				922B81252A94F12200E4B59D /* HomeProductCollectionViewCell */,
+				926017DA2A95E41A00CA5F92 /* HomeCells */,
 				922B81182A94D52B00E4B59D /* HomeViewController.swift */,
 				922B81192A94D52B00E4B59D /* HomeViewController.xib */,
 			);
@@ -314,6 +314,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		926017DA2A95E41A00CA5F92 /* HomeCells */ = {
+			isa = PBXGroup;
+			children = (
+				922B81252A94F12200E4B59D /* HomeProductCollectionViewCell */,
+			);
+			path = HomeCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
