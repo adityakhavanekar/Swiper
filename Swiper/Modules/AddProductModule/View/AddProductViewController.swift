@@ -88,16 +88,16 @@ class AddProductViewController: UIViewController {
     
     private func showImageSourceAlert() {
         self.activityIndicator = self.uiHelper.showActivityIndicator(in: self.view)
-        let libAction = uiHelper.createAlertActions(title: "Photo Library", style: .default) {
+        let libAction = uiHelper.createAlertActions(title: AlertTitles.photoLibrary.title, style: .default) {
             self.openImagePicker(sourceType: .photoLibrary)
         }
-        let camAction = uiHelper.createAlertActions(title: "Camera", style: .default) {
+        let camAction = uiHelper.createAlertActions(title: AlertTitles.camera.title, style: .default) {
             self.openImagePicker(sourceType: .camera)
         }
-        let canAction = uiHelper.createAlertActions(title: "Cancel", style: .cancel) {
+        let canAction = uiHelper.createAlertActions(title: AlertTitles.cancel.title, style: .cancel) {
             self.uiHelper.hideActivityIndicator(self.activityIndicator)
         }
-        let alert = uiHelper.createActionSheet(title: "Choose image source", actions: [libAction,camAction,canAction])
+        let alert = uiHelper.createActionSheet(title: AlertTitles.imageSourceOption.title, actions: [libAction,camAction,canAction])
         present(alert, animated: true, completion: nil)
     }
     
@@ -118,5 +118,8 @@ extension AddProductViewController: UITextFieldDelegate {
 }
 
 extension AddProductViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
-    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        productImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.dismiss(animated: true)
+    }
 }

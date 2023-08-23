@@ -45,3 +45,14 @@ enum StringConstants:String{
         return self.rawValue
     }
 }
+
+enum AlertTitles:String{
+    case photoLibrary = "Photo Library"
+    case camera = "Camera"
+    case cancel = "Cancel"
+    case imageSourceOption = "Choose Image Source"
+    
+    var title:String {
+        return self.rawValue
+    }
+}
