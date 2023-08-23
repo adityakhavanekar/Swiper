@@ -59,14 +59,18 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return homeViewModel.getCount()
+        return homeViewModel.getFilteredProductsCount() ?? homeViewModel.getCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.homeProductCollectionViewCell.cell, for: indexPath) as? HomeProductCollectionViewCell else {return UICollectionViewCell()}
-        if let product = homeViewModel.getProduct(index: indexPath.row){
+        guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.homeProductCollectionViewCell.cell, for: indexPath) as? HomeProductCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        if let product = homeViewModel.filteredProducts?[indexPath.row] ?? homeViewModel.getProduct(index: indexPath.row) {
             cell.setupCell(product: product)
         }
+        
         return cell
     }
     
@@ -89,5 +93,21 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            homeViewModel.filteredProducts = nil
+        } else {
+            homeViewModel.getFilteredProducts(name: searchText)
+        }
+        productListCollectionView.reloadData()
+        totalProductsCountLabel.text = "\(productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound.constant)"
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }

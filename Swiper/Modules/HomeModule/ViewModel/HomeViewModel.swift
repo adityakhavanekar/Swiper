@@ -12,6 +12,7 @@ class HomeViewModel{
     let manager = NetworkManager.shared
     let url = APIEndpoints.getProductList.url
     var productList : [ProductListElementModel]?
+    var filteredProducts : [ProductListElementModel]?
     
     init(){}
     
@@ -36,5 +37,18 @@ class HomeViewModel{
     
     func getProduct(index:Int)->ProductListElementModel?{
         return productList?[index]
+    }
+    
+    func getFilteredProducts(name: String) {
+        guard !name.isEmpty else {
+            return
+        }
+        self.filteredProducts = productList?.filter { product in
+            product.productName.lowercased().contains(name.lowercased())
+        }
+    }
+    
+    func getFilteredProductsCount()->Int?{
+        return filteredProducts?.count
     }
 }
