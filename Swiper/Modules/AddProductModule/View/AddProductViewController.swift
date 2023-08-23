@@ -41,14 +41,16 @@ class AddProductViewController: UIViewController {
     }
     
     @objc func keyboardAppear(){
+        print(scrollView.contentSize.height)
         if isExpand == false{
-            scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height + 200)
+            scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.internalView.frame.height + 250)
             isExpand = true
         }
     }
     
     @objc func keyboardDisappear(){
-        self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height - 200)
+        print(scrollView.contentSize.height)
+        self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.internalView.frame.height + 50)
         isExpand = false
     }
     
