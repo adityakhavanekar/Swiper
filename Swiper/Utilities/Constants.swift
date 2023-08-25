@@ -39,7 +39,7 @@ class StringConstants{
     static var productsFound = "Products found"
     static var rupeeSymbol = "₹"
     static var ok = "Ok"
-    static var error = "Error!"
+    static var error = "Error"
     static var someThingWentWrong = "Something went wrong"
     static var errorOccured = "Error Occured"
     static var emptyString = ""

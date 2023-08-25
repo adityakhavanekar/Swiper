@@ -52,20 +52,27 @@ class HomeViewController: UIViewController {
         self.homeViewModel.getProductListing { err in
             if err == nil {
                 DispatchQueue.main.async {
-                    self.productListCollectionView.reloadData()
-                    self.totalProductsCountLabel.text = "\(self.productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound)"
-                    self.uiHelper.hideActivityIndicator(self.activityIndicator)
+                    self.gotDataSuccessfully()
                 }
             }else{
-                print(StringConstants.errorOccured)
-                self.adProductButton.isEnabled = false
-                self.uiHelper.hideActivityIndicator(self.activityIndicator)
-                let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default){}
-                let alert = self.uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.someThingWentWrong)
-                alert.addAction(action)
-                self.present(alert, animated: true)
+                self.errorGettingData()
             }
         }
+    }
+    
+    private func gotDataSuccessfully(){
+        self.productListCollectionView.reloadData()
+        self.totalProductsCountLabel.text = "\(self.productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound)"
+        self.uiHelper.hideActivityIndicator(self.activityIndicator)
+    }
+    private func errorGettingData(){
+        print(StringConstants.errorOccured)
+        self.adProductButton.isEnabled = false
+        self.uiHelper.hideActivityIndicator(self.activityIndicator)
+        let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default){}
+        let alert = self.uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.someThingWentWrong)
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
     
 //    MARK: - IBActions
