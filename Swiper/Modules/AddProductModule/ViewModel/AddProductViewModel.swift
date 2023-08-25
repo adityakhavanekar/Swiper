@@ -18,12 +18,12 @@ class AddProductViewModel{
             if let data = responseData{
                 do{
                     let jsonData = try JSONDecoder().decode(ProductAddedResponse.self, from: data)
-                    completion(jsonData.message ?? "",true)
+                    completion(jsonData.message ?? StringConstants.errorOccured,true)
                 }catch{
-                    completion("Error Occured!",false)
+                    completion(StringConstants.errorOccured,false)
                 }
             }else if responseError != nil{
-                completion("Error Occured!",false)
+                completion(StringConstants.errorOccured,false)
             }
         }
     }

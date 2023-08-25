@@ -53,8 +53,13 @@ class HomeViewController: UIViewController {
                     self.uiHelper.hideActivityIndicator(self.activityIndicator)
                 }
             }else{
-                print("Error Occured")
+                print(StringConstants.errorOccured)
+                self.adProductButton.isEnabled = false
                 self.uiHelper.hideActivityIndicator(self.activityIndicator)
+                let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default){}
+                let alert = self.uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.someThingWentWrong)
+                alert.addAction(action)
+                self.present(alert, animated: true)
             }
         }
     }
@@ -69,7 +74,7 @@ class HomeViewController: UIViewController {
 // MARK: - CollectionView Methods
 extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return homeViewModel.getFilteredProductsCount() ?? homeViewModel.getCount()
+        return homeViewModel.getFilteredProductsCount() ?? homeViewModel.getAllProductsCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

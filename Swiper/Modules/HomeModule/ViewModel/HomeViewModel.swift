@@ -17,7 +17,7 @@ class HomeViewModel{
     init(){}
     
     func getProductListing(completion: @escaping (Error?) -> Void) {
-        manager.getReqWithAlamofire(url: self.url, method: .get, parameters: nil, headers: nil) { data, error in
+        manager.getRequest(url: self.url, method: .get, parameters: nil, headers: nil) { data, error in
             if let error = error {
                 completion(error)
             } else if let data = data {
@@ -32,7 +32,7 @@ class HomeViewModel{
         }
     }
     
-    func getCount()->Int{
+    func getAllProductsCount()->Int{
         return productList?.count ?? 0
     }
     

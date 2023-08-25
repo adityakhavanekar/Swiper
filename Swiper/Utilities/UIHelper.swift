@@ -46,4 +46,9 @@ class UIHelper{
         }
         return action
     }
+    
+    func createAlertPopUp(title:String,message:String)->UIAlertController{
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        return alert
+    }
 }

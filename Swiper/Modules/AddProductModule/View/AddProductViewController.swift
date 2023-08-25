@@ -103,22 +103,6 @@ class AddProductViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func pickImageButtonClicked(_ sender: UIButton) {
-        showImageSourceAlert()
-    }
-    
-    @IBAction func cancelButtonClicked(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func convertImageToBase64String (img: UIImage) -> String {
-        let baseStr = "data:image/jpeg;base64,\(img.jpegData(compressionQuality: 1)?.base64EncodedString() ?? "")"
-      return baseStr
-    }
-    @IBAction func adButtonClicked(_ sender: UIButton) {
-        callApiToAddProduct()
-    }
-    
     private func callApiToAddProduct(){
         var file:FileData?
         guard let params = [
@@ -143,6 +127,18 @@ class AddProductViewController: UIViewController {
                 print(msg)
             }
         }
+    }
+    
+    @IBAction func pickImageButtonClicked(_ sender: UIButton) {
+        showImageSourceAlert()
+    }
+    
+    @IBAction func cancelButtonClicked(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func adButtonClicked(_ sender: UIButton) {
+        callApiToAddProduct()
     }
 }
 

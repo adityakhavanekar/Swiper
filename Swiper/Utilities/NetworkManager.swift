@@ -20,7 +20,7 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     
-    func getReqWithAlamofire(url:URL,method:HTTPMethod,parameters:[String:Any]?,headers:[String:Any]?,completion: @escaping (Data?,Error?)->()){
+    func getRequest(url:URL,method:HTTPMethod,parameters:[String:Any]?,headers:[String:Any]?,completion: @escaping (Data?,Error?)->()){
         var httpHeaders: HTTPHeaders?
         if let headersDict = headers as? [String: String] {
             httpHeaders = HTTPHeaders(headersDict)
