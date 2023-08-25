@@ -36,6 +36,7 @@ class AddProductViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
+    
 //    MARK: - UIFunction
     private func setupUI(){
         internalView.clipsToBounds = true
@@ -171,16 +172,19 @@ class AddProductViewController: UIViewController {
     }
 }
 
-// MARK: - Extensions
+// MARK: - TextField Delegate methods
 extension AddProductViewController: UITextFieldDelegate {
    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
       textField.resignFirstResponder()
    }
 }
 
+// MARK: - UIImage Picker View Methods
 extension AddProductViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         productImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.dismiss(animated: true)
     }
 }
+
+// MARK: - End

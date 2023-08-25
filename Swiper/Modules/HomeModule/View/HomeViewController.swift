@@ -9,16 +9,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+//    MARK: - IBOutlets
     @IBOutlet weak var adProductButton: UIButton!
     @IBOutlet weak var totalProductsCountLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var productListCollectionView: UICollectionView!
     
+//    MARK: - Variables
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
-    
     var uiHelper:UIHelper = UIHelper()
     var homeViewModel:HomeViewModel = HomeViewModel()
 
+//    MARK: - View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -29,6 +31,7 @@ class HomeViewController: UIViewController {
         callHomeApi()
     }
     
+//    MARK: - setting UI
     private func setupUI(){
         navigationController?.navigationBar.isHidden = true
         searchBar.searchTextField.textColor = .black
@@ -43,6 +46,7 @@ class HomeViewController: UIViewController {
         productListCollectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 100, right: 0)
     }
     
+//    MARK: - API Call
     private func callHomeApi(){
         activityIndicator = uiHelper.showActivityIndicator(in: self.view)
         self.homeViewModel.getProductListing { err in
@@ -64,6 +68,7 @@ class HomeViewController: UIViewController {
         }
     }
     
+//    MARK: - IBActions
     @IBAction func addProductButtonClicked(_ sender: UIButton) {
         let vc = AddProductViewController()
         self.navigationController?.pushViewController(vc, animated: true)
@@ -122,3 +127,5 @@ extension HomeViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+
+// MARK: - End
