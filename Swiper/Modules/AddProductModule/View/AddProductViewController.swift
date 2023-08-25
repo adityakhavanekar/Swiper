@@ -9,7 +9,8 @@ import UIKit
 import Alamofire
 
 class AddProductViewController: UIViewController {
-
+    
+//    MARK: - IBOutlets
     @IBOutlet weak var pickImageButton: UIButton!
     @IBOutlet weak var taxTxtField: UITextField!
     @IBOutlet weak var priceTxtField: UITextField!
@@ -23,17 +24,19 @@ class AddProductViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
+//    MARK: - Variables
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     var uiHelper:UIHelper = UIHelper()
     var addProductViewModel = AddProductViewModel()
     
     var isExpand:Bool = false
     
+//    MARK: - View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    
+//    MARK: - UIFunction
     private func setupUI(){
         internalView.clipsToBounds = true
         cancelButton.clipsToBounds = true
@@ -54,6 +57,7 @@ class AddProductViewController: UIViewController {
         addScrollingObeservers()
     }
     
+//    MARK: - Scrolling Observers
     private func addScrollingObeservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -73,12 +77,14 @@ class AddProductViewController: UIViewController {
         isExpand = false
     }
     
+//    MARK: - Setting Text Field delegates
     private func setTextFieldDelegates(textFields:[UITextField]){
         for txtField in textFields{
             txtField.delegate = self
         }
     }
     
+//    MARK: - Setting up ImagePickerView
     private func openImagePicker(sourceType: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
@@ -103,6 +109,7 @@ class AddProductViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+//    MARK: - API Call
     private func callApiToAddProduct(){
         activityIndicator = uiHelper.showActivityIndicator(in: self.view)
         var file:FileData?
@@ -150,6 +157,7 @@ class AddProductViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+//    MARK: - IBActions
     @IBAction func pickImageButtonClicked(_ sender: UIButton) {
         showImageSourceAlert()
     }
@@ -163,6 +171,7 @@ class AddProductViewController: UIViewController {
     }
 }
 
+// MARK: - Extensions
 extension AddProductViewController: UITextFieldDelegate {
    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
       textField.resignFirstResponder()
