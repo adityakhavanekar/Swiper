@@ -11,6 +11,7 @@ enum APIEndpoints: String {
     private var baseUrl:String { return "https://app.getswipe.in/api/public"}
 
     case getProductList = "/get"
+    case addProduct = "/add"
     
     var url: URL {
         guard let url = URL(string: baseUrl) else {
@@ -20,39 +21,34 @@ enum APIEndpoints: String {
     }
 }
 
-enum CollectionViewCells:String{
-    
-    case homeProductCollectionViewCell = "HomeProductCollectionViewCell"
-    
-    var cell: String {
-        return self.rawValue
-    }
+class AddProductParamsConstants{
+    static var productName = "product_name"
+    static var productType = "product_type"
+    static var price = "price"
+    static var tax = "tax"
+    static var files = "files[]"
 }
 
-enum ImageConstants:String{
-    case noImage = "noImage"
-    
-    var image:String{
-        return self.rawValue
-    }
+class AlertTitlesConstants{
+    static var photoLibrary = "Photo Library"
+    static var camera = "Camera"
+    static var cancel = "Cancel"
+    static var imageSourceOption = "Choose Image Source"
 }
 
-enum StringConstants:String{
-    case productsFound = "Products found"
-    case rupeeSymbol = "₹"
-    
-    var constant:String {
-        return self.rawValue
-    }
+class StringConstants{
+    static var productsFound = "Products found"
+    static var rupeeSymbol = "₹"
 }
 
-enum AlertTitles:String{
-    case photoLibrary = "Photo Library"
-    case camera = "Camera"
-    case cancel = "Cancel"
-    case imageSourceOption = "Choose Image Source"
-    
-    var title:String {
-        return self.rawValue
-    }
+class CollectionViewCellConstants{
+    static var homeProductCollectionViewCell = "HomeProductCollectionViewCell"
+}
+
+class ImageConstants{
+    static var noImage = "noImage"
+}
+
+class MimeTypeConstants{
+    static var jpegImage = "image/jpeg"
 }

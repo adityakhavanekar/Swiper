@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AddProductViewController: UIViewController {
 
@@ -24,6 +25,7 @@ class AddProductViewController: UIViewController {
     
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     var uiHelper:UIHelper = UIHelper()
+    var addProductViewModel = AddProductViewModel()
     
     var isExpand:Bool = false
     
@@ -88,16 +90,16 @@ class AddProductViewController: UIViewController {
     
     private func showImageSourceAlert() {
         self.activityIndicator = self.uiHelper.showActivityIndicator(in: self.view)
-        let libAction = uiHelper.createAlertActions(title: AlertTitles.photoLibrary.title, style: .default) {
+        let libAction = uiHelper.createAlertActions(title: AlertTitlesConstants.photoLibrary, style: .default) {
             self.openImagePicker(sourceType: .photoLibrary)
         }
-        let camAction = uiHelper.createAlertActions(title: AlertTitles.camera.title, style: .default) {
+        let camAction = uiHelper.createAlertActions(title: AlertTitlesConstants.camera, style: .default) {
             self.openImagePicker(sourceType: .camera)
         }
-        let canAction = uiHelper.createAlertActions(title: AlertTitles.cancel.title, style: .cancel) {
+        let canAction = uiHelper.createAlertActions(title: AlertTitlesConstants.cancel, style: .cancel) {
             self.uiHelper.hideActivityIndicator(self.activityIndicator)
         }
-        let alert = uiHelper.createActionSheet(title: AlertTitles.imageSourceOption.title, actions: [libAction,camAction,canAction])
+        let alert = uiHelper.createActionSheet(title: AlertTitlesConstants.imageSourceOption, actions: [libAction,camAction,canAction])
         present(alert, animated: true, completion: nil)
     }
     
@@ -109,6 +111,32 @@ class AddProductViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    func convertImageToBase64String (img: UIImage) -> String {
+        let baseStr = "data:image/jpeg;base64,\(img.jpegData(compressionQuality: 1)?.base64EncodedString() ?? "")"
+      return baseStr
+    }
+    @IBAction func adButtonClicked(_ sender: UIButton) {
+        callApiToAddProduct()
+    }
+    
+    private func callApiToAddProduct(){
+        var file:FileData?
+        guard let params = [AddProductParamsConstants.productName:productNameTxtField.text,
+                            AddProductParamsConstants.productType:productTypeTxtField.text,
+                            AddProductParamsConstants.price:priceTxtField.text,
+                            AddProductParamsConstants.tax:taxTxtField.text] as? [String:String] else {return}
+        if let imageData = productImageView.image?.jpegData(compressionQuality: 8.0){
+            file = FileData(data: imageData, parameter: AddProductParamsConstants.files, fileName: "\(productNameTxtField.text ?? "").jpg", mimeType: MimeTypeConstants.jpegImage)
+        }
+        addProductViewModel.addNewProduct(params: params, file: file) { msg,bool in
+            switch bool{
+            case true:
+                print(msg)
+            case false:
+                print(msg)
+            }
+        }
+    }
 }
 
 extension AddProductViewController: UITextFieldDelegate {

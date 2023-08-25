@@ -6,48 +6,51 @@
 //
 
 import Foundation
+import Alamofire
+
+struct FileData{
+    let data:Data
+    let parameter:String
+    let fileName:String
+    let mimeType:String
+}
 
 class NetworkManager {
     let session = URLSession.shared
     static let shared = NetworkManager()
     private init() {}
     
-    func getRequest(url: URL,
-                    params: [String: Any]? = nil,
-                    headers: [String: String]? = nil,
-                    completion: @escaping (Data?, Error?) -> Void) {
-        
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        components?.queryItems = params?.map { key, value in
-            URLQueryItem(name: key, value: "\(value)")
+    func getReqWithAlamofire(url:URL,method:HTTPMethod,parameters:[String:Any]?,headers:[String:Any]?,completion: @escaping (Data?,Error?)->()){
+        var httpHeaders: HTTPHeaders?
+        if let headersDict = headers as? [String: String] {
+            httpHeaders = HTTPHeaders(headersDict)
         }
-
-        if let url = components?.url {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.allHTTPHeaderFields = headers
-
-            let session = URLSession.shared
-
-            let task = session.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    completion(nil, error)
-                    return
-                }
-
-                guard let data = data, let response = response as? HTTPURLResponse else {
-                    completion(nil, nil)
-                    return
-                }
-
-                if response.statusCode == 200 {
-                    completion(data, nil)
-                } else {
-                    let statusError = NSError(domain: "HTTP", code: response.statusCode, userInfo: nil)
-                    completion(nil, statusError)
-                }
+        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: httpHeaders).response{ res in
+            switch res.result{
+            case .success(let data):
+                completion(data,nil)
+            case .failure(let error):
+                completion(nil,error)
             }
-            task.resume()
+        }
+    }
+    
+    func postMultiPartFormData(url:URL,parameters:[String:String],data:FileData?,completion: @escaping (Data?,Error?)->()){
+        let boundary = UUID().uuidString
+        AF.upload(multipartFormData: { multipartFormData in
+            for param in parameters{
+                multipartFormData.append(param.value.data(using: .utf8)!, withName: param.key)
+            }
+            if let data = data{
+                multipartFormData.append(data.data,withName:data.parameter,fileName:data.fileName,mimeType:data.mimeType)
+            }
+        },to: url,usingThreshold: 100,method: .post,headers: ["Content-Type": "multipart/form-data; boundary=\(boundary)"]).response{ res in
+            switch res.result{
+            case .success(_):
+                completion(res.data,nil)
+            case .failure(let error):
+                completion(nil,error)
+            }
         }
     }
 }

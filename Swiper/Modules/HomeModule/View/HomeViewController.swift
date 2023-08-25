@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     private func setupCollectionView(){
         productListCollectionView.dataSource = self
         productListCollectionView.delegate = self
-        productListCollectionView.register(UINib(nibName: CollectionViewCells.homeProductCollectionViewCell.cell,bundle: nil),forCellWithReuseIdentifier: CollectionViewCells.homeProductCollectionViewCell.cell)
+        productListCollectionView.register(UINib(nibName: CollectionViewCellConstants.homeProductCollectionViewCell,bundle: nil),forCellWithReuseIdentifier: CollectionViewCellConstants.homeProductCollectionViewCell)
         productListCollectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 100, right: 0)
     }
     
@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
             if err == nil {
                 DispatchQueue.main.async {
                     self.productListCollectionView.reloadData()
-                    self.totalProductsCountLabel.text = "\(self.homeViewModel.getCount()) \(StringConstants.productsFound.constant)"
+                    self.totalProductsCountLabel.text = "\(self.homeViewModel.getCount()) \(StringConstants.productsFound)"
                     self.uiHelper.hideActivityIndicator(self.activityIndicator)
                 }
             }else{
@@ -70,7 +70,7 @@ extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.homeProductCollectionViewCell.cell, for: indexPath) as? HomeProductCollectionViewCell else {
+        guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellConstants.homeProductCollectionViewCell, for: indexPath) as? HomeProductCollectionViewCell else {
             return UICollectionViewCell()
         }
         
@@ -107,7 +107,7 @@ extension HomeViewController: UISearchBarDelegate {
             homeViewModel.getFilteredProducts(name: searchText)
         }
         productListCollectionView.reloadData()
-        totalProductsCountLabel.text = "\(productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound.constant)"
+        totalProductsCountLabel.text = "\(productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound)"
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

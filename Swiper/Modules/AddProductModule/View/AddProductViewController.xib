@@ -146,6 +146,9 @@
                                             <state key="normal" title="Add">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="adButtonClicked:" destination="-1" eventType="touchUpInside" id="4eO-CS-Y4Q"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
