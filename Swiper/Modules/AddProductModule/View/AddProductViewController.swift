@@ -104,6 +104,7 @@ class AddProductViewController: UIViewController {
     }
     
     private func callApiToAddProduct(){
+        activityIndicator = uiHelper.showActivityIndicator(in: self.view)
         var file:FileData?
         guard let params = [
             StringConstants.productName:productNameTxtField.text,
@@ -115,16 +116,28 @@ class AddProductViewController: UIViewController {
             file = FileData(
                 data: imageData,
                 parameter: StringConstants.files,
-                fileName: "\(productNameTxtField.text ?? "").jpg",
+                fileName: "\(productNameTxtField.text ?? StringConstants.emptyString)\(StringConstants.jpgExtension)",
                 mimeType: StringConstants.jpegImage
             )
         }
         addProductViewModel.addNewProduct(params: params, file: file, headers: nil) { msg,bool in
             switch bool{
             case true:
-                print(msg)
+                self.uiHelper.hideActivityIndicator(self.activityIndicator)
+                let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.emptyString)
+                let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(action)
+                self.present(alert, animated: true)
             case false:
-                print(msg)
+                self.uiHelper.hideActivityIndicator(self.activityIndicator)
+                let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.someThingWentWrong)
+                let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(action)
+                self.present(alert, animated: true)
             }
         }
     }

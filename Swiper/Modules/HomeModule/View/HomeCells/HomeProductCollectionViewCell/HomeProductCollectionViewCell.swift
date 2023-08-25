@@ -20,11 +20,11 @@ class HomeProductCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var productImageView: UIImageView!
     
-    var productNameStr:String = ""
-    var productTypeStr:String = ""
-    var priceStr:String = ""
-    var taxStr:String = ""
-    var totalPriceStr:String = ""
+    var productNameStr:String = StringConstants.emptyString
+    var productTypeStr:String = StringConstants.emptyString
+    var priceStr:String = StringConstants.emptyString
+    var taxStr:String = StringConstants.emptyString
+    var totalPriceStr:String = StringConstants.emptyString
     
     
     override func awakeFromNib() {

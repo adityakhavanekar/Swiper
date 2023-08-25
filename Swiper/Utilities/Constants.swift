@@ -42,6 +42,8 @@ class StringConstants{
     static var error = "Error!"
     static var someThingWentWrong = "Something went wrong"
     static var errorOccured = "Error Occured"
+    static var emptyString = ""
+    static var jpgExtension = ".jpg"
     
 //    CollectionView Cells
     static var homeProductCollectionViewCell = "HomeProductCollectionViewCell"
