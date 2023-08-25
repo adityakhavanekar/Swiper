@@ -96,7 +96,6 @@ class HomeViewController: UIViewController {
         let vc = AddProductViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
 // MARK: - CollectionView Methods
@@ -109,11 +108,9 @@ extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: StringConstants.homeProductCollectionViewCell, for: indexPath) as? HomeProductCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         if let product = homeViewModel.filteredProducts?[indexPath.row] ?? homeViewModel.getProduct(index: indexPath.row) {
             cell.setupCell(product: product)
         }
-        
         return cell
     }
 }
