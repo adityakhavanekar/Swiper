@@ -27,9 +27,9 @@ struct ProductAddedResponse: Codable {
 // MARK: - ProductDetails
 struct ProductDetails: Codable {
     let image: String?
-    let price: Int?
+    let price: Double?
     let productName, productType: String?
-    let tax: Int?
+    let tax: Double?
 
     enum CodingKeys: String, CodingKey {
         case image, price

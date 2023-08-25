@@ -123,23 +123,31 @@ class AddProductViewController: UIViewController {
         addProductViewModel.addNewProduct(params: params, file: file, headers: nil) { msg,bool in
             switch bool{
             case true:
-                self.uiHelper.hideActivityIndicator(self.activityIndicator)
-                let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.emptyString)
-                let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
-                    self.navigationController?.popViewController(animated: true)
-                }
-                alert.addAction(action)
-                self.present(alert, animated: true)
+                self.productAddedSuccessfully(msg: msg)
             case false:
-                self.uiHelper.hideActivityIndicator(self.activityIndicator)
-                let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.someThingWentWrong)
-                let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
-                    self.navigationController?.popViewController(animated: true)
-                }
-                alert.addAction(action)
-                self.present(alert, animated: true)
+                self.errorAddingProduct(msg: msg)
             }
         }
+    }
+    
+    private func productAddedSuccessfully(msg:String){
+        self.uiHelper.hideActivityIndicator(self.activityIndicator)
+        let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.emptyString)
+        let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
+    
+    private func errorAddingProduct(msg:String){
+        self.uiHelper.hideActivityIndicator(self.activityIndicator)
+        let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.someThingWentWrong)
+        let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
     
     @IBAction func pickImageButtonClicked(_ sender: UIButton) {
