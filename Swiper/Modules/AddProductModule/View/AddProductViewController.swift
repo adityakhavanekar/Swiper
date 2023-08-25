@@ -138,6 +138,7 @@ class AddProductViewController: UIViewController {
             StringConstants.price:priceTxtField.text,
             StringConstants.tax:taxTxtField.text
         ] as? [String:String] else {return}
+        
         if let imageData = selectedImage?.jpegData(compressionQuality: 8.0){
             file = FileData(
                 data: imageData,
@@ -195,7 +196,6 @@ class AddProductViewController: UIViewController {
             alert.addAction(okAction)
             self.present(alert, animated: true)
         }
-        
     }
 }
 
