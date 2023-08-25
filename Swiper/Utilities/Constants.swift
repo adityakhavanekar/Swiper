@@ -45,6 +45,7 @@ class StringConstants{
     static var emptyString = ""
     static var jpgExtension = ".jpg"
     static var tryAgain = "Try again"
+    static var requiredFields = "All fields are required"
     
 //    CollectionView Cells
     static var homeProductCollectionViewCell = "HomeProductCollectionViewCell"

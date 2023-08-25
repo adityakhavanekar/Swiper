@@ -120,6 +120,14 @@ class AddProductViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func areAllTextFieldsFilled(textFields: [UITextField]) -> Bool {
+        for textField in textFields {
+            guard let text = textField.text, !text.isEmpty else {
+                return false
+            }
+        }
+        return true
+    }
 //    MARK: - API Call
     private func callApiToAddProduct(){
         activityIndicator = uiHelper.showActivityIndicator(in: self.view)
@@ -178,7 +186,16 @@ class AddProductViewController: UIViewController {
     }
     
     @IBAction func adButtonClicked(_ sender: UIButton) {
-        callApiToAddProduct()
+        let filled = self.areAllTextFieldsFilled(textFields: [productNameTxtField,productTypeTxtField,priceTxtField,taxTxtField])
+        if filled{
+            callApiToAddProduct()
+        }else{
+            let alert = self.uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.requiredFields)
+            let okAction = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {}
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+        }
+        
     }
 }
 
