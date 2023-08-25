@@ -55,12 +55,15 @@ class HomeViewController: UIViewController {
                     self.gotDataSuccessfully()
                 }
             }else{
-                self.errorGettingData()
+                DispatchQueue.main.async {
+                    self.errorGettingData()
+                }
             }
         }
     }
     
     private func gotDataSuccessfully(){
+        self.adProductButton.isEnabled = true
         self.productListCollectionView.reloadData()
         self.totalProductsCountLabel.text = "\(self.productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound)"
         self.uiHelper.hideActivityIndicator(self.activityIndicator)
@@ -69,9 +72,13 @@ class HomeViewController: UIViewController {
         print(StringConstants.errorOccured)
         self.adProductButton.isEnabled = false
         self.uiHelper.hideActivityIndicator(self.activityIndicator)
-        let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default){}
+        let okAction = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default){}
+        let reloadAction = self.uiHelper.createAlertActions(title: StringConstants.tryAgain, style: .default) {
+            self.callHomeApi()
+        }
         let alert = self.uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.someThingWentWrong)
-        alert.addAction(action)
+        alert.addAction(okAction)
+        alert.addAction(reloadAction)
         self.present(alert, animated: true)
     }
     
