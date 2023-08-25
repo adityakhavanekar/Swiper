@@ -30,6 +30,7 @@ class AddProductViewController: UIViewController {
     var addProductViewModel = AddProductViewModel()
     
     var isExpand:Bool = false
+    var selectedImage:UIImage?
     
 //    MARK: - View Life Cycle Methods
     override func viewDidLoad() {
@@ -129,7 +130,7 @@ class AddProductViewController: UIViewController {
             StringConstants.price:priceTxtField.text,
             StringConstants.tax:taxTxtField.text
         ] as? [String:String] else {return}
-        if let imageData = productImageView.image?.jpegData(compressionQuality: 8.0){
+        if let imageData = selectedImage?.jpegData(compressionQuality: 8.0){
             file = FileData(
                 data: imageData,
                 parameter: StringConstants.files,
@@ -192,6 +193,7 @@ extension AddProductViewController: UITextFieldDelegate {
 extension AddProductViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         productImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.dismiss(animated: true)
     }
 }

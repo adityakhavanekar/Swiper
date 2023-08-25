@@ -46,8 +46,9 @@ class HomeProductCollectionViewCell: UICollectionViewCell {
         return (number * 100).rounded() / 100
     }
     
-    private func getTotalPrice(price:Double,tax:Double)->Double{
-        let total = price+tax
+    private func getTotalPrice(price: Double, tax: Double) -> Double {
+        let taxAmount = price * (tax / 100)
+        let total = price + taxAmount
         return roundToTwoDecimals(number: total)
     }
     
@@ -59,7 +60,7 @@ class HomeProductCollectionViewCell: UICollectionViewCell {
         productNameLabel.text = product.productName
         productTypeLabel.text = product.productType
         priceLabel.text = "\(StringConstants.rupeeSymbol) \(price)"
-        taxLabel.text = "\(StringConstants.rupeeSymbol) \(product.tax)"
+        taxLabel.text = "Tax: \(product.tax)%"
         totalPriceLabel.text = "\(StringConstants.rupeeSymbol) \(totalPrice)"
         
         productImageView.sd_setImage(with: URL(string: product.image),placeholderImage: UIImage(named: StringConstants.noImage),context: nil)
