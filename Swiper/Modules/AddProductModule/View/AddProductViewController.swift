@@ -56,6 +56,7 @@ class AddProductViewController: UIViewController {
         
         setTextFieldDelegates(textFields: [productNameTxtField,productTypeTxtField,priceTxtField,taxTxtField])
         addScrollingObeservers()
+        setTapGesture()
     }
     
 //    MARK: - Scrolling Observers
@@ -76,6 +77,14 @@ class AddProductViewController: UIViewController {
         print(scrollView.contentSize.height)
         self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.internalView.frame.height + 50)
         isExpand = false
+    }
+    
+    private func setTapGesture(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 //    MARK: - Setting Text Field delegates

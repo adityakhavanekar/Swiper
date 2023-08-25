@@ -37,6 +37,7 @@ class HomeViewController: UIViewController {
         searchBar.searchTextField.textColor = .black
         adProductButton.layer.cornerRadius = 10
         adProductButton.applyLiftedShadowEffectToView(cornerRadius: 10, opacity: 0.3)
+        setTapGesture()
     }
     
     private func setupCollectionView(){
@@ -44,6 +45,14 @@ class HomeViewController: UIViewController {
         productListCollectionView.delegate = self
         productListCollectionView.register(UINib(nibName: StringConstants.homeProductCollectionViewCell,bundle: nil),forCellWithReuseIdentifier: StringConstants.homeProductCollectionViewCell)
         productListCollectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 100, right: 0)
+    }
+    
+    private func setTapGesture(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 //    MARK: - API Call
