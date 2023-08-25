@@ -21,34 +21,30 @@ enum APIEndpoints: String {
     }
 }
 
-class AddProductParamsConstants{
+class StringConstants{
+//    Add Product Params
     static var productName = "product_name"
     static var productType = "product_type"
     static var price = "price"
     static var tax = "tax"
     static var files = "files[]"
-}
-
-class AlertTitlesConstants{
+    
+//    Alert Titles
     static var photoLibrary = "Photo Library"
     static var camera = "Camera"
     static var cancel = "Cancel"
     static var imageSourceOption = "Choose Image Source"
-}
-
-class StringConstants{
+    
+//    Text Statics
     static var productsFound = "Products found"
     static var rupeeSymbol = "₹"
-}
-
-class CollectionViewCellConstants{
+    
+//    CollectionView Cells
     static var homeProductCollectionViewCell = "HomeProductCollectionViewCell"
-}
-
-class ImageConstants{
+    
+//    Image Constants
     static var noImage = "noImage"
-}
-
-class MimeTypeConstants{
+    
+//    MimeTypes
     static var jpegImage = "image/jpeg"
 }

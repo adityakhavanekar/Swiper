@@ -35,17 +35,23 @@ class NetworkManager {
         }
     }
     
-    func postMultiPartFormData(url:URL,parameters:[String:String],data:FileData?,completion: @escaping (Data?,Error?)->()){
+    func postMultiPartFormData(url: URL, parameters: [String: String], data: FileData?, headers: [String: String]?, completion: @escaping (Data?, Error?) -> ()) {
         let boundary = UUID().uuidString
+        var headersWithBoundary: HTTPHeaders = ["Content-Type": "multipart/form-data; boundary=\(boundary)"]
+        if let headers = headers {
+            for (key, value) in headers {
+                headersWithBoundary[key] = value
+            }
+        }
         AF.upload(multipartFormData: { multipartFormData in
-            for param in parameters{
+            for param in parameters {
                 multipartFormData.append(param.value.data(using: .utf8)!, withName: param.key)
             }
-            if let data = data{
-                multipartFormData.append(data.data,withName:data.parameter,fileName:data.fileName,mimeType:data.mimeType)
+            if let data = data {
+                multipartFormData.append(data.data, withName: data.parameter, fileName: data.fileName, mimeType: data.mimeType)
             }
-        },to: url,usingThreshold: 100,method: .post,headers: ["Content-Type": "multipart/form-data; boundary=\(boundary)"]).response{ res in
-            switch res.result{
+        }, to: url, usingThreshold: 100, method: .post, headers: headersWithBoundary).response { res in
+            switch res.result {
             case .success(_):
                 completion(res.data,nil)
             case .failure(let error):

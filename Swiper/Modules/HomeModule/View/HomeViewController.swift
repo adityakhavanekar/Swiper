@@ -23,6 +23,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupCollectionView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         callHomeApi()
     }
     
@@ -36,7 +39,7 @@ class HomeViewController: UIViewController {
     private func setupCollectionView(){
         productListCollectionView.dataSource = self
         productListCollectionView.delegate = self
-        productListCollectionView.register(UINib(nibName: CollectionViewCellConstants.homeProductCollectionViewCell,bundle: nil),forCellWithReuseIdentifier: CollectionViewCellConstants.homeProductCollectionViewCell)
+        productListCollectionView.register(UINib(nibName: StringConstants.homeProductCollectionViewCell,bundle: nil),forCellWithReuseIdentifier: StringConstants.homeProductCollectionViewCell)
         productListCollectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 100, right: 0)
     }
     
@@ -46,7 +49,7 @@ class HomeViewController: UIViewController {
             if err == nil {
                 DispatchQueue.main.async {
                     self.productListCollectionView.reloadData()
-                    self.totalProductsCountLabel.text = "\(self.homeViewModel.getCount()) \(StringConstants.productsFound)"
+                    self.totalProductsCountLabel.text = "\(self.productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound)"
                     self.uiHelper.hideActivityIndicator(self.activityIndicator)
                 }
             }else{
@@ -70,7 +73,7 @@ extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellConstants.homeProductCollectionViewCell, for: indexPath) as? HomeProductCollectionViewCell else {
+        guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: StringConstants.homeProductCollectionViewCell, for: indexPath) as? HomeProductCollectionViewCell else {
             return UICollectionViewCell()
         }
         

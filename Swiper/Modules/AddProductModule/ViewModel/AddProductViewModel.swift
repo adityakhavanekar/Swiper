@@ -13,8 +13,8 @@ class AddProductViewModel{
     private let url = APIEndpoints.addProduct.url
     
     
-    func addNewProduct(params:[String:String],file:FileData?,completion: @escaping (String,Bool)->()){
-        manager.postMultiPartFormData(url:self.url, parameters: params, data: file) { responseData, responseError in
+    func addNewProduct(params:[String:String],file:FileData?,headers:[String:String]?,completion: @escaping (String,Bool)->()){
+        manager.postMultiPartFormData(url:self.url,parameters:params, data: file, headers: headers) { responseData, responseError in
             if let data = responseData{
                 do{
                     let jsonData = try JSONDecoder().decode(ProductAddedResponse.self, from: data)

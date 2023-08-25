@@ -90,16 +90,16 @@ class AddProductViewController: UIViewController {
     
     private func showImageSourceAlert() {
         self.activityIndicator = self.uiHelper.showActivityIndicator(in: self.view)
-        let libAction = uiHelper.createAlertActions(title: AlertTitlesConstants.photoLibrary, style: .default) {
+        let libAction = uiHelper.createAlertActions(title: StringConstants.photoLibrary, style: .default) {
             self.openImagePicker(sourceType: .photoLibrary)
         }
-        let camAction = uiHelper.createAlertActions(title: AlertTitlesConstants.camera, style: .default) {
+        let camAction = uiHelper.createAlertActions(title: StringConstants.camera, style: .default) {
             self.openImagePicker(sourceType: .camera)
         }
-        let canAction = uiHelper.createAlertActions(title: AlertTitlesConstants.cancel, style: .cancel) {
+        let canAction = uiHelper.createAlertActions(title: StringConstants.cancel, style: .cancel) {
             self.uiHelper.hideActivityIndicator(self.activityIndicator)
         }
-        let alert = uiHelper.createActionSheet(title: AlertTitlesConstants.imageSourceOption, actions: [libAction,camAction,canAction])
+        let alert = uiHelper.createActionSheet(title: StringConstants.imageSourceOption, actions: [libAction,camAction,canAction])
         present(alert, animated: true, completion: nil)
     }
     
@@ -121,14 +121,21 @@ class AddProductViewController: UIViewController {
     
     private func callApiToAddProduct(){
         var file:FileData?
-        guard let params = [AddProductParamsConstants.productName:productNameTxtField.text,
-                            AddProductParamsConstants.productType:productTypeTxtField.text,
-                            AddProductParamsConstants.price:priceTxtField.text,
-                            AddProductParamsConstants.tax:taxTxtField.text] as? [String:String] else {return}
+        guard let params = [
+            StringConstants.productName:productNameTxtField.text,
+            StringConstants.productType:productTypeTxtField.text,
+            StringConstants.price:priceTxtField.text,
+            StringConstants.tax:taxTxtField.text
+        ] as? [String:String] else {return}
         if let imageData = productImageView.image?.jpegData(compressionQuality: 8.0){
-            file = FileData(data: imageData, parameter: AddProductParamsConstants.files, fileName: "\(productNameTxtField.text ?? "").jpg", mimeType: MimeTypeConstants.jpegImage)
+            file = FileData(
+                data: imageData,
+                parameter: StringConstants.files,
+                fileName: "\(productNameTxtField.text ?? "").jpg",
+                mimeType: StringConstants.jpegImage
+            )
         }
-        addProductViewModel.addNewProduct(params: params, file: file) { msg,bool in
+        addProductViewModel.addNewProduct(params: params, file: file, headers: nil) { msg,bool in
             switch bool{
             case true:
                 print(msg)
