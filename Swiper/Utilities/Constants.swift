@@ -11,6 +11,7 @@ enum APIEndpoints: String {
     private var baseUrl:String { return "https://app.getswipe.in/api/public"}
 
     case getProductList = "/get"
+    case addProduct = "/add"
     
     var url: URL {
         guard let url = URL(string: baseUrl) else {
@@ -20,39 +21,38 @@ enum APIEndpoints: String {
     }
 }
 
-enum CollectionViewCells:String{
+class StringConstants{
+//    Add Product Params
+    static var productName = "product_name"
+    static var productType = "product_type"
+    static var price = "price"
+    static var tax = "tax"
+    static var files = "files[]"
     
-    case homeProductCollectionViewCell = "HomeProductCollectionViewCell"
+//    Alert Titles
+    static var photoLibrary = "Photo Library"
+    static var camera = "Camera"
+    static var cancel = "Cancel"
+    static var imageSourceOption = "Choose Image Source"
     
-    var cell: String {
-        return self.rawValue
-    }
-}
-
-enum ImageConstants:String{
-    case noImage = "noImage"
+//    Text Statics
+    static var productsFound = "Products found"
+    static var rupeeSymbol = "₹"
+    static var ok = "Ok"
+    static var error = "Error"
+    static var someThingWentWrong = "Something went wrong"
+    static var errorOccured = "Error Occured"
+    static var emptyString = ""
+    static var jpgExtension = ".jpg"
+    static var tryAgain = "Try again"
+    static var requiredFields = "All fields are required"
     
-    var image:String{
-        return self.rawValue
-    }
-}
-
-enum StringConstants:String{
-    case productsFound = "Products found"
-    case rupeeSymbol = "₹"
+//    CollectionView Cells
+    static var homeProductCollectionViewCell = "HomeProductCollectionViewCell"
     
-    var constant:String {
-        return self.rawValue
-    }
-}
-
-enum AlertTitles:String{
-    case photoLibrary = "Photo Library"
-    case camera = "Camera"
-    case cancel = "Cancel"
-    case imageSourceOption = "Choose Image Source"
+//    Image Constants
+    static var noImage = "noImage"
     
-    var title:String {
-        return self.rawValue
-    }
+//    MimeTypes
+    static var jpegImage = "image/jpeg"
 }

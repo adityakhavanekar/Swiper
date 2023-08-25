@@ -16,22 +16,23 @@ class HomeViewModel{
     
     init(){}
     
-    func getProductListing(completion:@escaping (Error?)->()){
-        manager.getRequest(url: url) { resultData, resultError in
-            if let data = resultData{
-                do{
+    func getProductListing(completion: @escaping (Error?) -> Void) {
+        manager.getRequest(url: self.url, method: .get, parameters: nil, headers: nil) { data, error in
+            if let error = error {
+                completion(error)
+            } else if let data = data {
+                do {
                     let jsonData = try JSONDecoder().decode([ProductListElementModel].self, from: data)
                     self.productList = jsonData
                     completion(nil)
-                }catch{
-                    print("Error")
-                    completion(resultError)
+                } catch {
+                    completion(error)
                 }
             }
         }
     }
     
-    func getCount()->Int{
+    func getAllProductsCount()->Int{
         return productList?.count ?? 0
     }
     

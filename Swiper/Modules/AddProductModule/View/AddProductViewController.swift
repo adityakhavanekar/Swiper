@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class AddProductViewController: UIViewController {
-
+    
+//    MARK: - IBOutlets
     @IBOutlet weak var pickImageButton: UIButton!
     @IBOutlet weak var taxTxtField: UITextField!
     @IBOutlet weak var priceTxtField: UITextField!
@@ -22,16 +24,21 @@ class AddProductViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
+//    MARK: - Variables
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     var uiHelper:UIHelper = UIHelper()
+    var addProductViewModel = AddProductViewModel()
     
     var isExpand:Bool = false
+    var selectedImage:UIImage?
     
+//    MARK: - View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
+//    MARK: - UIFunction
     private func setupUI(){
         internalView.clipsToBounds = true
         cancelButton.clipsToBounds = true
@@ -50,8 +57,10 @@ class AddProductViewController: UIViewController {
         
         setTextFieldDelegates(textFields: [productNameTxtField,productTypeTxtField,priceTxtField,taxTxtField])
         addScrollingObeservers()
+        setTapGesture()
     }
     
+//    MARK: - Scrolling Observers
     private func addScrollingObeservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -71,12 +80,22 @@ class AddProductViewController: UIViewController {
         isExpand = false
     }
     
+    private func setTapGesture(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+//    MARK: - Setting Text Field delegates
     private func setTextFieldDelegates(textFields:[UITextField]){
         for txtField in textFields{
             txtField.delegate = self
         }
     }
     
+//    MARK: - Setting up ImagePickerView
     private func openImagePicker(sourceType: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
@@ -88,19 +107,77 @@ class AddProductViewController: UIViewController {
     
     private func showImageSourceAlert() {
         self.activityIndicator = self.uiHelper.showActivityIndicator(in: self.view)
-        let libAction = uiHelper.createAlertActions(title: AlertTitles.photoLibrary.title, style: .default) {
+        let libAction = uiHelper.createAlertActions(title: StringConstants.photoLibrary, style: .default) {
             self.openImagePicker(sourceType: .photoLibrary)
         }
-        let camAction = uiHelper.createAlertActions(title: AlertTitles.camera.title, style: .default) {
+        let camAction = uiHelper.createAlertActions(title: StringConstants.camera, style: .default) {
             self.openImagePicker(sourceType: .camera)
         }
-        let canAction = uiHelper.createAlertActions(title: AlertTitles.cancel.title, style: .cancel) {
+        let canAction = uiHelper.createAlertActions(title: StringConstants.cancel, style: .cancel) {
             self.uiHelper.hideActivityIndicator(self.activityIndicator)
         }
-        let alert = uiHelper.createActionSheet(title: AlertTitles.imageSourceOption.title, actions: [libAction,camAction,canAction])
+        let alert = uiHelper.createActionSheet(title: StringConstants.imageSourceOption, actions: [libAction,camAction,canAction])
         present(alert, animated: true, completion: nil)
     }
     
+    func areAllTextFieldsFilled(textFields: [UITextField]) -> Bool {
+        for textField in textFields {
+            guard let text = textField.text, !text.isEmpty else {
+                return false
+            }
+        }
+        return true
+    }
+//    MARK: - API Call
+    private func callApiToAddProduct(){
+        activityIndicator = uiHelper.showActivityIndicator(in: self.view)
+        var file:FileData?
+        guard let params = [
+            StringConstants.productName:productNameTxtField.text,
+            StringConstants.productType:productTypeTxtField.text,
+            StringConstants.price:priceTxtField.text,
+            StringConstants.tax:taxTxtField.text
+        ] as? [String:String] else {return}
+        
+        if let imageData = selectedImage?.jpegData(compressionQuality: 8.0){
+            file = FileData(
+                data: imageData,
+                parameter: StringConstants.files,
+                fileName: "\(productNameTxtField.text ?? StringConstants.emptyString)\(StringConstants.jpgExtension)",
+                mimeType: StringConstants.jpegImage
+            )
+        }
+        addProductViewModel.addNewProduct(params: params, file: file, headers: nil) { msg,bool in
+            switch bool{
+            case true:
+                self.productAddedSuccessfully(msg: msg)
+            case false:
+                self.errorAddingProduct(msg: msg)
+            }
+        }
+    }
+    
+    private func productAddedSuccessfully(msg:String){
+        self.uiHelper.hideActivityIndicator(self.activityIndicator)
+        let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.emptyString)
+        let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
+    
+    private func errorAddingProduct(msg:String){
+        self.uiHelper.hideActivityIndicator(self.activityIndicator)
+        let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.someThingWentWrong)
+        let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
+    
+//    MARK: - IBActions
     @IBAction func pickImageButtonClicked(_ sender: UIButton) {
         showImageSourceAlert()
     }
@@ -109,17 +186,33 @@ class AddProductViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func adButtonClicked(_ sender: UIButton) {
+        let filled = self.areAllTextFieldsFilled(textFields: [productNameTxtField,productTypeTxtField,priceTxtField,taxTxtField])
+        if filled{
+            callApiToAddProduct()
+        }else{
+            let alert = self.uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.requiredFields)
+            let okAction = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {}
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+        }
+    }
 }
 
+// MARK: - TextField Delegate methods
 extension AddProductViewController: UITextFieldDelegate {
    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
       textField.resignFirstResponder()
    }
 }
 
+// MARK: - UIImage Picker View Methods
 extension AddProductViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         productImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.dismiss(animated: true)
     }
 }
+
+// MARK: - End
