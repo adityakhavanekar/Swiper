@@ -57,8 +57,8 @@ class HomeViewController: UIViewController {
     
 //    MARK: - API Call
     private func callHomeApi(){
-        activityIndicator = uiHelper.showActivityIndicator(in: self.view)
-        self.homeViewModel.getProductListing { err in
+        activityIndicator = uiHelper.showActivityIndicator(in: view)
+        homeViewModel.getProductListing { err in
             if err == nil {
                 DispatchQueue.main.async {
                     self.gotDataSuccessfully()
@@ -72,29 +72,29 @@ class HomeViewController: UIViewController {
     }
     
     private func gotDataSuccessfully(){
-        self.adProductButton.isEnabled = true
-        self.productListCollectionView.reloadData()
-        self.totalProductsCountLabel.text = "\(self.productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound)"
-        self.uiHelper.hideActivityIndicator(self.activityIndicator)
+        adProductButton.isEnabled = true
+        productListCollectionView.reloadData()
+        totalProductsCountLabel.text = "\(productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound)"
+        uiHelper.hideActivityIndicator(activityIndicator)
     }
     private func errorGettingData(){
         print(StringConstants.errorOccured)
-        self.adProductButton.isEnabled = false
-        self.uiHelper.hideActivityIndicator(self.activityIndicator)
-        let okAction = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default){}
-        let reloadAction = self.uiHelper.createAlertActions(title: StringConstants.tryAgain, style: .default) {
+        adProductButton.isEnabled = false
+        uiHelper.hideActivityIndicator(activityIndicator)
+        let okAction = uiHelper.createAlertActions(title: StringConstants.ok, style: .default){}
+        let reloadAction = uiHelper.createAlertActions(title: StringConstants.tryAgain, style: .default) {
             self.callHomeApi()
         }
-        let alert = self.uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.someThingWentWrong)
+        let alert = uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.someThingWentWrong)
         alert.addAction(okAction)
         alert.addAction(reloadAction)
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
 //    MARK: - IBActions
     @IBAction func addProductButtonClicked(_ sender: UIButton) {
         let vc = AddProductViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

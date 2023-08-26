@@ -44,7 +44,7 @@ class HomeViewModel{
         guard !name.isEmpty else {
             return
         }
-        self.filteredProducts = productList?.filter { product in
+        filteredProducts = productList?.filter { product in
             product.productName.lowercased().contains(name.lowercased())
         }
     }
