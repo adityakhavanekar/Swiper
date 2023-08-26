@@ -36,7 +36,7 @@ class HomeViewModel{
         return productList?.count ?? 0
     }
     
-    func getProduct(index:Int)->ProductListElementModel?{
+    func getProductAtIndex(index:Int)->ProductListElementModel?{
         return productList?[index]
     }
     

@@ -51,6 +51,7 @@ class HomeViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -77,6 +78,7 @@ class HomeViewController: UIViewController {
         totalProductsCountLabel.text = "\(productListCollectionView.numberOfItems(inSection: 0)) \(StringConstants.productsFound)"
         uiHelper.hideActivityIndicator(activityIndicator)
     }
+    
     private func errorGettingData(){
         print(StringConstants.errorOccured)
         adProductButton.isEnabled = false
@@ -108,7 +110,7 @@ extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: StringConstants.homeProductCollectionViewCell, for: indexPath) as? HomeProductCollectionViewCell else {
             return UICollectionViewCell()
         }
-        if let product = homeViewModel.getFilteredProductAtIndex(index: indexPath.row) ?? homeViewModel.getProduct(index: indexPath.row) {
+        if let product = homeViewModel.getFilteredProductAtIndex(index: indexPath.row) ?? homeViewModel.getProductAtIndex(index: indexPath.row) {
             cell.setupCell(product: product)
         }
         return cell
