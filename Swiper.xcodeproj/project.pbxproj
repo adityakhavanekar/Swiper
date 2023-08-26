@@ -227,7 +227,7 @@
 		922B81152A94D1FF00E4B59D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				926017DA2A95E41A00CA5F92 /* HomeCells */,
+				926017DA2A95E41A00CA5F92 /* HomeProductCollectionViewCell */,
 				922B81182A94D52B00E4B59D /* HomeViewController.swift */,
 				922B81192A94D52B00E4B59D /* HomeViewController.xib */,
 			);
@@ -259,15 +259,6 @@
 				922B816B2A952E7400E4B59D /* UIHelper.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		922B81252A94F12200E4B59D /* HomeProductCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				922B81262A94F15300E4B59D /* HomeProductCollectionViewCell.swift */,
-				922B81272A94F15300E4B59D /* HomeProductCollectionViewCell.xib */,
-			);
-			path = HomeProductCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		924A617B2A95386E00ABE3E9 /* SplashScreenModule */ = {
@@ -322,12 +313,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		926017DA2A95E41A00CA5F92 /* HomeCells */ = {
+		926017DA2A95E41A00CA5F92 /* HomeProductCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				922B81252A94F12200E4B59D /* HomeProductCollectionViewCell */,
+				922B81262A94F15300E4B59D /* HomeProductCollectionViewCell.swift */,
+				922B81272A94F15300E4B59D /* HomeProductCollectionViewCell.xib */,
 			);
-			path = HomeCells;
+			path = HomeProductCollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -773,8 +765,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = SplashScreenViewController.xib;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -804,8 +796,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = SplashScreenViewController.xib;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
