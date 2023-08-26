@@ -69,14 +69,14 @@ class AddProductViewController: UIViewController {
     @objc func keyboardAppear(){
         print(scrollView.contentSize.height)
         if isExpand == false{
-            scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.internalView.frame.height + 300)
+            scrollView.contentSize = CGSize(width: view.frame.width, height: internalView.frame.height + 300)
             isExpand = true
         }
     }
     
     @objc func keyboardDisappear(){
         print(scrollView.contentSize.height)
-        self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.internalView.frame.height + 50)
+        scrollView.contentSize = CGSize(width: view.frame.width, height: internalView.frame.height + 50)
         isExpand = false
     }
     
@@ -106,7 +106,7 @@ class AddProductViewController: UIViewController {
     }
     
     private func showImageSourceAlert() {
-        self.activityIndicator = self.uiHelper.showActivityIndicator(in: self.view)
+        activityIndicator = uiHelper.showActivityIndicator(in: view)
         let libAction = uiHelper.createAlertActions(title: StringConstants.photoLibrary, style: .default) {
             self.openImagePicker(sourceType: .photoLibrary)
         }
@@ -130,7 +130,7 @@ class AddProductViewController: UIViewController {
     }
 //    MARK: - API Call
     private func callApiToAddProduct(){
-        activityIndicator = uiHelper.showActivityIndicator(in: self.view)
+        activityIndicator = uiHelper.showActivityIndicator(in: view)
         var file:FileData?
         guard let params = [
             StringConstants.productName:productNameTxtField.text,
@@ -148,33 +148,24 @@ class AddProductViewController: UIViewController {
             )
         }
         addProductViewModel.addNewProduct(params: params, file: file, headers: nil) { msg,bool in
-            switch bool{
-            case true:
-                self.productAddedSuccessfully(msg: msg)
-            case false:
-                self.errorAddingProduct(msg: msg)
-            }
+            self.gotDataFromApi(msg: msg, bool: bool)
         }
     }
     
-    private func productAddedSuccessfully(msg:String){
-        self.uiHelper.hideActivityIndicator(self.activityIndicator)
-        let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.emptyString)
-        let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
+    private func gotDataFromApi(msg:String,bool:Bool){
+        uiHelper.hideActivityIndicator(activityIndicator)
+        var alert = UIAlertController()
+        switch bool{
+        case true:
+            alert = uiHelper.createAlertPopUp(title: msg, message: StringConstants.emptyString)
+        case false:
+            alert = uiHelper.createAlertPopUp(title: msg, message: StringConstants.someThingWentWrong)
+        }
+        let action = uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
             self.navigationController?.popViewController(animated: true)
         }
         alert.addAction(action)
-        self.present(alert, animated: true)
-    }
-    
-    private func errorAddingProduct(msg:String){
-        self.uiHelper.hideActivityIndicator(self.activityIndicator)
-        let alert = self.uiHelper.createAlertPopUp(title: msg, message: StringConstants.someThingWentWrong)
-        let action = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {
-            self.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(action)
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
 //    MARK: - IBActions
@@ -183,18 +174,18 @@ class AddProductViewController: UIViewController {
     }
     
     @IBAction func cancelButtonClicked(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func adButtonClicked(_ sender: UIButton) {
-        let filled = self.areAllTextFieldsFilled(textFields: [productNameTxtField,productTypeTxtField,priceTxtField,taxTxtField])
+        let filled = areAllTextFieldsFilled(textFields: [productNameTxtField,productTypeTxtField,priceTxtField,taxTxtField])
         if filled{
             callApiToAddProduct()
         }else{
-            let alert = self.uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.requiredFields)
-            let okAction = self.uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {}
+            let alert = uiHelper.createAlertPopUp(title: StringConstants.error, message: StringConstants.requiredFields)
+            let okAction = uiHelper.createAlertActions(title: StringConstants.ok, style: .default) {}
             alert.addAction(okAction)
-            self.present(alert, animated: true)
+            present(alert, animated: true)
         }
     }
 }
@@ -211,7 +202,7 @@ extension AddProductViewController: UIImagePickerControllerDelegate,UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         productImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        self.dismiss(animated: true)
+        dismiss(animated: true)
     }
 }
 
