@@ -108,7 +108,7 @@ extension HomeViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         guard let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: StringConstants.homeProductCollectionViewCell, for: indexPath) as? HomeProductCollectionViewCell else {
             return UICollectionViewCell()
         }
-        if let product = homeViewModel.filteredProducts?[indexPath.row] ?? homeViewModel.getProduct(index: indexPath.row) {
+        if let product = homeViewModel.getFilteredProductAtIndex(index: indexPath.row) ?? homeViewModel.getProduct(index: indexPath.row) {
             cell.setupCell(product: product)
         }
         return cell
@@ -135,7 +135,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            homeViewModel.filteredProducts = nil
+            homeViewModel.clearFilteredProducts()
         } else {
             homeViewModel.getFilteredProducts(name: searchText)
         }

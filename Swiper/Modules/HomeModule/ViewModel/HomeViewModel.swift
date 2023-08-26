@@ -9,10 +9,10 @@ import Foundation
 
 class HomeViewModel{
     
-    let manager = NetworkManager.shared
-    let url = APIEndpoints.getProductList.url
-    var productList : [ProductListElementModel]?
-    var filteredProducts : [ProductListElementModel]?
+    private let manager = NetworkManager.shared
+    private let url = APIEndpoints.getProductList.url
+    private var productList : [ProductListElementModel]?
+    private var filteredProducts : [ProductListElementModel]?
     
     init(){}
     
@@ -51,5 +51,13 @@ class HomeViewModel{
     
     func getFilteredProductsCount()->Int?{
         return filteredProducts?.count
+    }
+    
+    func getFilteredProductAtIndex(index:Int)->ProductListElementModel?{
+        return filteredProducts?[index]
+    }
+    
+    func clearFilteredProducts(){
+        filteredProducts = nil
     }
 }
