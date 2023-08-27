@@ -27,7 +27,9 @@ class StringConstants{
     static var productType = "product_type"
     static var price = "price"
     static var tax = "tax"
+    static var taxC = "Tax:"
     static var files = "files[]"
+    static var percent = "%"
     
 //    Alert Titles
     static var photoLibrary = "Photo Library"

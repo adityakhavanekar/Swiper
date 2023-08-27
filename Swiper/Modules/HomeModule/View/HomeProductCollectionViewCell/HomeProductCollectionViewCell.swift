@@ -60,7 +60,7 @@ class HomeProductCollectionViewCell: UICollectionViewCell {
         productNameLabel.text = product.productName
         productTypeLabel.text = product.productType
         priceLabel.text = "\(StringConstants.rupeeSymbol) \(price)"
-        taxLabel.text = "Tax: \(product.tax)%"
+        taxLabel.text = "\(StringConstants.taxC) \(product.tax)\(StringConstants.percent)"
         totalPriceLabel.text = "\(StringConstants.rupeeSymbol) \(totalPrice)"
         
         productImageView.sd_setImage(with: URL(string: product.image),placeholderImage: UIImage(named: StringConstants.noImage),context: nil)
